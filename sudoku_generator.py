@@ -1,4 +1,8 @@
 import math,random
+import pygame, sys
+from constants import *
+
+
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -201,6 +205,10 @@ class Cell:
 
 
     def set_sketched_value(self, value):
+        pygame.init()
+        pygame.display.set_caption("Tic Tac Toe")
+        chip_font = pygame.font.Font(None, 400)
+        font = pygame.font.Font(None, 40)
         '''
         Setter for this cell’s sketched value
         '''
@@ -213,6 +221,24 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
+        screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        if self.selected:
+            pygame.draw.rect(screen, (255, 0, 0),
+                             pygame.Rect(self.col * SQUARE_SIZE, self.row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            self.selected = False
+
+        if self.value == 'x':
+            # draw 'x' or 'o' as text in the window/ board
+            # 2. text drawing: define the text
+            chip_x_rect = chip_x_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_x_surf, chip_x_rect)
+        elif self.value == 'o':
+            chip_o_rect = chip_o_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_o_surf, chip_o_rect)
         pass
 
 
