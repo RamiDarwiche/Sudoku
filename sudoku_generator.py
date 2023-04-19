@@ -221,26 +221,68 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
+        num_font = pygame.font.Font(None, 40)
+        chip_1_surf = num_font.render('1', 0, NUM_COLOR)   # sudoku 1-9
+        chip_2_surf = num_font.render('2', 0, NUM_COLOR)
+        chip_3_surf = num_font.render('3', 0, NUM_COLOR)
+        chip_4_surf = num_font.render('4', 0, NUM_COLOR)
+        chip_5_surf = num_font.render('5', 0, NUM_COLOR)
+        chip_6_surf = num_font.render('6', 0, NUM_COLOR)
+        chip_7_surf = num_font.render('7', 0, NUM_COLOR)
+        chip_8_surf = num_font.render('8', 0, NUM_COLOR)
+        chip_9_surf = num_font.render('9', 0, NUM_COLOR)
         screen = pygame.display.set_mode((WIDTH, HEIGHT))
         if self.selected:
             pygame.draw.rect(screen, (255, 0, 0),
                              pygame.Rect(self.col * SQUARE_SIZE, self.row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             self.selected = False
 
-        if self.value == 'x':
+        if self.value == '1':
             # draw 'x' or 'o' as text in the window/ board
             # 2. text drawing: define the text
-            chip_x_rect = chip_x_surf.get_rect(
+            chip_1_rect = chip_1_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
-            screen.blit(chip_x_surf, chip_x_rect)
-        elif self.value == 'o':
-            chip_o_rect = chip_o_surf.get_rect(
+            screen.blit(chip_1_surf, chip_1_rect)
+        elif self.value == '2':
+            chip_2_rect = chip_2_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
-            screen.blit(chip_o_surf, chip_o_rect)
-        pass
-
+            screen.blit(chip_2_surf, chip_2_rect)
+        elif self.value == '3':
+            chip_3_rect = chip_3_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_3_surf, chip_3_rect)
+        elif self.value == '4':
+            chip_4_rect = chip_4_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_4_surf, chip_4_rect)
+        elif self.value == '5':
+            chip_5_rect = chip_5_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            screen.blit(chip_5_surf, chip_5_rect)
+        elif self.value == '6':
+            chip_6_rect = chip_6_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_6_surf, chip_6_rect)
+        elif self.value == '7':
+            chip_7_rect = chip_7_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_7_surf, chip_7_rect)
+        elif self.value == '8':
+            chip_8_rect = chip_8_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_8_surf, chip_8_rect)
+        elif self.value == '9':
+            chip_9_rect = chip_9_surf.get_rect(
+                center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
+            # 4. text drawing: blit
+            screen.blit(chip_9_surf, chip_9_rect)
 
 class Board:
     def __init__(self, width, height, screen, difficulty):
