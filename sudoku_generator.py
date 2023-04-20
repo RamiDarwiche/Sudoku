@@ -206,8 +206,7 @@ class Cell:
 
     def set_sketched_value(self, value):
         pygame.init()
-        pygame.display.set_caption("Tic Tac Toe")
-        chip_font = pygame.font.Font(None, 400)
+        pygame.display.set_caption("Sudoku")
         font = pygame.font.Font(None, 40)
         '''
         Setter for this cell’s sketched value
@@ -294,6 +293,22 @@ class Board:
         self.difficulty = difficulty
 
     def draw(self):
+        self.screen.fill(BG_IMAGE)
+        # draw horizontal lines
+        for i in range(1, BOARD_ROWS):
+            pygame.draw.line(screen,
+                             LINE_COLOR,
+                             (0, i * SQUARE_SIZE),
+                             (WIDTH, i * SQUARE_SIZE), LINE_WIDTH)
+        for i in range(1, BOARD_COLS):
+            pygame.draw.line(screen,
+                             LINE_COLOR,
+                             (i * SQUARE_SIZE, 0),
+                             (SQUARE_SIZE * i, HEIGHT),
+                             LINE_WIDTH)
+        for i in range(self.rows):
+            for j in range(self.cols):
+                self.cells[i][j].draw(self.screen)
         '''
         Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
         Draws every cell on this board.
@@ -389,3 +404,9 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
+
+
+BG_IMAGE = pygame.image.load('background.jpeg').convert   # trying to imporit the photo but its not working
+BG_IMAGE = pygame.transform.smoothscale(BG_IMAGE, gameDisplay.get_size())
+game.Display.blit(BG_IMAGE, (0, 0))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
