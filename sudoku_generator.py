@@ -232,10 +232,7 @@ class Cell:
         chip_8_surf = num_font.render('8', 0, NUM_COLOR)
         chip_9_surf = num_font.render('9', 0, NUM_COLOR)
         screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        if self.selected:
-            pygame.draw.rect(screen, (255, 0, 0),
-                             pygame.Rect(self.col * SQUARE_SIZE, self.row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-            self.selected = False
+
 
         if self.value == '1':
             # draw 'x' or 'o' as text in the window/ board
