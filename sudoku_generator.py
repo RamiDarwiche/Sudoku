@@ -399,7 +399,7 @@ class Board:
 
     def find_empty(self):
         '''
-        Finds an empty cell and returns its row and col as a tuple (x, y).
+        really Finds an empty cell and returns its row and col as a tuple (x, y).
         '''
         pass
 
