@@ -291,6 +291,16 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
+        self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
+                      range(BOARD_ROWS)]
+        self.board = self.initialize_board()
+
+
+
+    def initialize_board(self):
+        # 1st approach
+        return [["0" for i in range(9)] for j in range(9)]
+
 
     def draw(self):
         self.screen.fill(BG_IMAGE)
@@ -306,14 +316,26 @@ class Board:
                              (i * SQUARE_SIZE, 0),
                              (SQUARE_SIZE * i, HEIGHT),
                              LINE_WIDTH)
-        for i in range(self.rows):
-            for j in range(self.cols):
+        for i in range(1, BOARD_COLS, 3):
+            pygame.draw.line(screen,
+                             LINE_COLOR
+                             (i * SQUARE_SIZE, 0),
+                             (SQUARE_SIZE * i, HEIGHT),
+                             LINE_WIDTH)
+        for i in range(1, BOARD_ROWS, 3):
+            pygame.draw.line(screen,
+                             LINE_COLOR
+                             (i * SQUARE_SIZE, 0),
+                             (SQUARE_SIZE * i, HEIGHT),
+                             LINE_WIDTH)
+        for i in range(BOARD_ROWS):
+            for j in range(BOARD_COLS):
                 self.cells[i][j].draw(self.screen)
         '''
         Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
         Draws every cell on this board.
         '''
-        pass
+
 
     def select(self,row,col):
         '''
@@ -360,13 +382,20 @@ class Board:
         '''
         Returns a Boolean value indicating whether the board is full or not.
         '''
-        pass
+        for BOARD_ROWS in self.board:
+            for num in BOARD_ROWS:
+                if num == "0":
+                    return False
+        return True
+
 
     def update_board(self):
         '''
         Updates the underlying 2D board with the values in all cells.
         '''
-        pass
+        self.cells = [[Cell(self.board[BOARD_ROWS][BOARD_COLS], BOARD_ROWS, BOARD_COLS, SQUARE_SIZE, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for
+                      BOARD_COLS in range(BOARD_ROWS)]
+
 
     def find_empty(self):
         '''
@@ -407,6 +436,6 @@ def generate_sudoku(size, removed):
 
 
 BG_IMAGE = pygame.image.load('background.jpeg').convert   # trying to imporit the photo but its not working
-BG_IMAGE = pygame.transform.smoothscale(BG_IMAGE, gameDisplay.get_size())
-game.Display.blit(BG_IMAGE, (0, 0))
+BG_IMAGE = pygame.transform.smoothscale(BG_IMAGE, pygameDisplay.get_size())
+pygame.Display.blit(BG_IMAGE, (0, 0))
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
