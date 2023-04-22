@@ -1,8 +1,4 @@
 import math,random
-import pygame, sys
-from constants import *
-
-
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -26,7 +22,7 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
-        self.board = [[0 for _ in range(row_length)] for _ in range (row_length)] # not sure if this is corcret
+        self.board = [[0 for _ in range(row_length)] for _ in range(row_length)]  # not sure if this is corcret
         self.box_length = math.sqrt(row_length)
 
     '''
@@ -133,7 +129,8 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_diagonal(self):
-        pass
+        for start in range(0, self.row_length, self.box_length):
+            self.fill_box(start, start)
 
     '''
     DO NOT CHANGE
@@ -230,17 +227,7 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
-        num_font = pygame.font.Font(None, 40)
-        chip_1_surf = num_font.render('1', 0, NUM_COLOR)   # sudoku 1-9
-        chip_2_surf = num_font.render('2', 0, NUM_COLOR)
-        chip_3_surf = num_font.render('3', 0, NUM_COLOR)
-        chip_4_surf = num_font.render('4', 0, NUM_COLOR)
-        chip_5_surf = num_font.render('5', 0, NUM_COLOR)
-        chip_6_surf = num_font.render('6', 0, NUM_COLOR)
-        chip_7_surf = num_font.render('7', 0, NUM_COLOR)
-        chip_8_surf = num_font.render('8', 0, NUM_COLOR)
-        chip_9_surf = num_font.render('9', 0, NUM_COLOR)
-        screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pass
 
 
         if self.value == '1':
@@ -346,6 +333,19 @@ class Board:
         Draws every cell on this board.
         '''
 
+        # draw horizontal lines
+        for i in range(1, BOARD_ROWS):
+            pygame.draw.line(self.screen,
+                             LINE_COLOR,
+                             (0, i * SQUARE_SIZE),
+                             (WIDTH, i * SQUARE_SIZE), LINE_WIDTH)
+        #  draw vertical lines
+        for i in range(1, BOARD_COLS):
+            pygame.draw.line(self.screen,
+                             LINE_COLOR,
+                             (i * SQUARE_SIZE, 0),
+                             (SQUARE_SIZE * i, HEIGHT),
+                             LINE_WIDTH)
 
     def select(self,row,col):
         '''
@@ -376,6 +376,65 @@ class Board:
         pass
 
     def place_number(self, value):
+        # I think this is completely wrong. I tried to go based off the video
+        num_one = chip_font.render('1', 0, CROSS_COLOR)
+        num_two = chip_font.render('2', 0, CROSS_COLOR)
+        num_three = chip_font.render('3', 0, CROSS_COLOR)
+        num_four = chip_font.render('4', 0, CROSS_COLOR)
+        num_five = chip_font.render('5', 0, CROSS_COLOR)
+        num_six = chip_font.render('6', 0, CROSS_COLOR)
+        num_seven = chip_font.render('7', 0, CROSS_COLOR)
+        num_eight = chip_font.render('8', 0, CROSS_COLOR)
+        num_nine = chip_font.render('9', 0, CROSS_COLOR)
+        # need to change cross_color to something else, don't know to what
+
+        for row in range(BOARD_ROWS):
+            for col in range(BOARD_COLS):
+                if board[row][col] == '1':
+                    location = num_one.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_one, location)
+
+                elif board[row][col] == '2':
+                    location = num_two.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_two, location)
+
+                elif board[row][col] == '3':
+                    location = num_three.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_three, location)
+
+                elif board[row][col] == '4':
+                    location = num_four.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_four, location)
+
+                elif board[row][col] == '5':
+                    location = num_five.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_five, location)
+
+                elif board[row][col] == '6':
+                    location = num_six.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_six, location)
+
+                elif board[row][col] == '7':
+                    location = num_seven.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_seven, location)
+
+                elif board[row][col] == '8':
+                    location = num_eight.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_eight, location)
+
+                elif board[row][col] == '9':
+                    location = num_nine.get_rect(
+                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                    self.screen.blit(num_nine, location)
+
         '''
         Sets the value of the current selected cell equal to user entered value.
         Called when the user presses the Enter key.
@@ -409,7 +468,7 @@ class Board:
 
     def find_empty(self):
         '''
-        really Finds an empty cell and returns its row and col as a tuple (x, y).
+        Finds an empty cell and returns its row and col as a tuple (x, y).
         '''
         pass
 
