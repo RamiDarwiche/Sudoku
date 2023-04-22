@@ -1,6 +1,7 @@
 import math,random
 import pygame
 from constants import*
+chip_font = pygame.font.Font(None, 400)
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -285,12 +286,69 @@ class Board:
         pass
 
     def place_number(self, value):
+        # I think this is completely wrong. I tried to go based off the video
+    num_one = chip_font.render('1', 0, CROSS_COLOR)
+    num_two = chip_font.render('2', 0, CROSS_COLOR)
+    num_three = chip_font.render('3', 0, CROSS_COLOR)
+    num_four = chip_font.render('4', 0, CROSS_COLOR)
+    num_five = chip_font.render('5', 0, CROSS_COLOR)
+    num_six = chip_font.render('6', 0, CROSS_COLOR)
+    num_seven = chip_font.render('7', 0, CROSS_COLOR)
+    num_eight = chip_font.render('8', 0, CROSS_COLOR)
+    num_nine = chip_font.render('9', 0, CROSS_COLOR)
+    # need to change cross_color to something else, don't know to what
+
+    for row in range(BOARD_ROWS):
+        for col in range(BOARD_COLS):
+            if board[row][col] == '1':
+                location = num_one.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_one, location)
+
+            elif board[row][col] == '2':
+                location = num_two.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_two, location)
+
+            elif board[row][col] == '3':
+                location = num_three.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_three, location)
+
+            elif board[row][col] == '4':
+                location = num_four.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_four, location)
+
+            elif board[row][col] == '5':
+                location = num_five.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_five, location)
+
+            elif board[row][col] == '6':
+                location = num_six.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_six, location)
+
+            elif board[row][col] == '7':
+                location = num_seven.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_seven, location)
+
+            elif board[row][col] == '8':
+                location = num_eight.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_eight, location)
+
+            elif board[row][col] == '9':
+                location = num_nine.get_rect(
+                    center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
+                self.screen.blit(num_nine, location)
+
         '''
         Sets the value of the current selected cell equal to user entered value.
         Called when the user presses the Enter key.
         '''
-        pass
-
     def reset_to_original(self):
         '''
         Reset all cells in the board to their original values (0 if cleared, otherwise the corresponding digit)
