@@ -1,4 +1,6 @@
 import math,random
+import pygame
+from constants import*
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -22,7 +24,7 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
-        self.board = [[0 for _ in range(row_length)] for _ in range (row_length)] # not sure if this is corcret
+        self.board = [[0 for _ in range(row_length)] for _ in range(row_length)]  # not sure if this is corcret
         self.box_length = math.sqrt(row_length)
 
     '''
@@ -240,11 +242,19 @@ class Board:
         self.difficulty = difficulty
 
     def draw(self):
-        '''
-        Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
-        Draws every cell on this board.
-        '''
-        pass
+        # draw horizontal lines
+        for i in range(1, BOARD_ROWS):
+            pygame.draw.line(self.screen,
+                             LINE_COLOR,
+                             (0, i * SQUARE_SIZE),
+                             (WIDTH, i * SQUARE_SIZE), LINE_WIDTH)
+        #  draw vertical lines
+        for i in range(1, BOARD_COLS):
+            pygame.draw.line(self.screen,
+                             LINE_COLOR,
+                             (i * SQUARE_SIZE, 0),
+                             (SQUARE_SIZE * i, HEIGHT),
+                             LINE_WIDTH)
 
     def select(self,row,col):
         '''
