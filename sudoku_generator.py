@@ -1,10 +1,12 @@
 import math,random
+import pygame, sys
+from constants import *
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
 https://www.geeksforgeeks.org/program-sudoku-generator/
 """
-
+num_font = pygame.font.Font(None, 40)
 class SudokuGenerator:
     '''
 	create a sudoku board - initialize class variables and set up the 2D board
@@ -227,8 +229,17 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
-        pass
 
+        chip_1_surf = num_font.render('1', 0, NUM_COLOR)  # sudoku 1-9
+        # 3. text drawing: define the location
+        chip_2_surf = num_font.render('2', 0, NUM_COLOR)
+        chip_3_surf = num_font.render('3', 0, NUM_COLOR)
+        chip_4_surf = num_font.render('4', 0, NUM_COLOR)
+        chip_5_surf = num_font.render('5', 0, NUM_COLOR)
+        chip_6_surf = num_font.render('6', 0, NUM_COLOR)
+        chip_7_surf = num_font.render('7', 0, NUM_COLOR)
+        chip_8_surf = num_font.render('8', 0, NUM_COLOR)
+        chip_9_surf = num_font.render('9', 0, NUM_COLOR)
 
         if self.value == '1':
             # draw 'x' or 'o' as text in the window/ board
@@ -377,15 +388,19 @@ class Board:
 
     def place_number(self, value):
         # I think this is completely wrong. I tried to go based off the video
-        num_one = chip_font.render('1', 0, CROSS_COLOR)
-        num_two = chip_font.render('2', 0, CROSS_COLOR)
-        num_three = chip_font.render('3', 0, CROSS_COLOR)
-        num_four = chip_font.render('4', 0, CROSS_COLOR)
-        num_five = chip_font.render('5', 0, CROSS_COLOR)
-        num_six = chip_font.render('6', 0, CROSS_COLOR)
-        num_seven = chip_font.render('7', 0, CROSS_COLOR)
-        num_eight = chip_font.render('8', 0, CROSS_COLOR)
-        num_nine = chip_font.render('9', 0, CROSS_COLOR)
+
+
+        # 3. text drawing: define the location
+        num_one = num_font.render('2', 0, NUM_COLOR)
+        num_two = num_font.render('3', 0, NUM_COLOR)
+        num_three = num_font.render('4', 0, NUM_COLOR)
+        num_four = num_font.render('5', 0, NUM_COLOR)
+        num_five = num_font.render('6', 0, NUM_COLOR)
+        num_six = num_font.render('7', 0, NUM_COLOR)
+        num_seven = num_font.render('8', 0, NUM_COLOR)
+        num_eight = num_font.render('9', 0, NUM_COLOR)
+        num_nine = num_font.render('1', 0, NUM_COLOR)  # sudoku 1-9
+
         # need to change cross_color to something else, don't know to what
 
         for row in range(BOARD_ROWS):
