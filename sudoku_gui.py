@@ -67,6 +67,8 @@ screen.blit(mainImage, (0, 0))
 #maybe make class for this?
 #text stuff
 #is this updating real time? - Ramzi
+#it should because of the pygame.display.update() in the while True loop
+#if not we can make a class for the text too and move it into the while True loop
 """font = pygame.font.Font('Raleway-Black.ttf', 48)
 title = font.render('Welcome to Sudoku', True, BLACK)
 titleRect = title.get_rect()
