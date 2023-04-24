@@ -31,25 +31,29 @@ class Button():
 
                 if self.text == "Easy":
                     screen.fill((0,0,0))
-                    self.difficulty = True
+                    #draw generated board, init with diff
+                    self.difficulty = True #used for gui
 
                 elif self.text == "Medium":
                     screen.fill((0,0,0))
+                    #draw generated board, init with diff
                     self.difficulty = True
 
                 elif self.text == "Hard":
                     screen.fill((0,0,0))
+                    #draw generated board, init with diff
                     self.difficulty = True
                     pass
 
                 elif self.text == "Reset" and easy.difficulty == True:
+                    #board.clear
                     pass
 
-                elif self.text == "Restart":
-                    screen.fill((0,0,0))
+                elif self.text == "Restart" and easy.difficulty == True:
+                    #board.reset_to_original
                     pass
 
-                elif self.text == "Exit":
+                elif self.text == "Exit" and easy.difficulty == True:
                     pygame.quit()
                     sys.exit()
 
@@ -108,12 +112,25 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
+            #if click on a cell that is not randomly generated/deleted
+                #highlight it? it is suppose to be outlined red in the draw function in the class
+                #type in int in the box in a different font using sketch
+                #if selected cell has a sketched value and pygame.ENTER?
+                    #place_number
+                #if is_full is true:
+                    #if check_board is true:
+                        #draw you win
+                    #else:
+                        #draw you lose
+                #update_board with inserted int
                 pass
+
     easy.clicking_button(event)
     medium.clicking_button(event)
     hard.clicking_button(event)
     pygame.display.update()
     if easy.difficulty == True or medium.difficulty == True or hard.difficulty == True:
+        #make boxes better looking
         restart = Button(25,450,150,75,RED,"Restart",45,477)
         reset = Button(225,450,150,75,RED,"Reset",257,477)
         exit = Button(425,450,150,75,RED,"Exit",470,477)
