@@ -370,13 +370,19 @@ class Board:
         If a tuple of (x, y) coordinates is within the displayed board, this function returns a tuple of the (row, col)
         of the cell which was clicked. Otherwise, this function returns None
         '''
-        pass
+        row, col = 0, 0
+        if x >= 1 or x <= 9:
+            return row == x
+        if y >= 1 or y <= 9:
+            return col == y
+        return None
 
     def clear(self):
         '''
         Clears the value cell. Note that the user can only remove the cell values and sketched value that are
         filled by themselves.
         '''
+
         pass
 
     def sketch(self, value):
@@ -485,7 +491,12 @@ class Board:
         '''
         Finds an empty cell and returns its row and col as a tuple (x, y).
         '''
-        pass
+        for i in range(0, len(BOARD_ROWS-1)):   # may need more work
+            for j in range(0, len(BOARD_COLS-1)):
+                if i == '0':
+                    if j == '0':
+                        return (i,j)
+
 
     def check_board(self):
         '''
@@ -519,7 +530,8 @@ def generate_sudoku(size, removed):
     return board
 
 
-BG_IMAGE = pygame.image.load('background.jpeg').convert   # trying to imporit the photo but its not working
-BG_IMAGE = pygame.transform.smoothscale(BG_IMAGE, pygameDisplay.get_size())
-pygame.Display.blit(BG_IMAGE, (0, 0))
+pygame.init()
+pygame.display.set_caption("Sudoku")
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+mainImage = pygame.image.load("sudokumenu.jpg")
+screen.blit(mainImage, (0, 0))
