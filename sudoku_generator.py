@@ -243,13 +243,13 @@ size is the number of rows/columns of the board (9 for this project)
 removed is the number of cells to clear (set to 0)
 Return: list[list] (a 2D Python list to represent the board)
 '''
-def generate_sudoku(size, removed):
-    sudoku = SudokuGenerator(size, removed)
-    sudoku.fill_values()
-    board = sudoku.get_board()
-    sudoku.remove_cells()
-    board = sudoku.get_board()
-    return board
+#def generate_sudoku(size, removed):
+    #sudoku = SudokuGenerator(size, removed)
+    #sudoku.fill_values()
+    #board = sudoku.get_board()
+    #sudoku.remove_cells()
+    #board = sudoku.get_board()
+    #return board
 
 class Cell:
 
@@ -274,7 +274,8 @@ class Cell:
         '''
         Setter for this cell’s sketched value
         '''
-        pass
+
+
 
     def draw(self):
         '''
@@ -283,7 +284,7 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
-
+        num_font = pygame.font.Font(None, 10)
         chip_1_surf = num_font.render('1', 0, NUM_COLOR)  # sudoku 1-9
         # 3. text drawing: define the location
         chip_2_surf = num_font.render('2', 0, NUM_COLOR)
@@ -341,6 +342,8 @@ class Cell:
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_9_surf, chip_9_rect)
+        else:
+            print("None")
 
 class Board:
     def __init__(self, width, height, screen, difficulty):
@@ -365,7 +368,7 @@ class Board:
 
 
     def draw(self):
-        self.screen.fill(BG_IMAGE)
+        self.screen.fill(255, 255, 255)
         # draw horizontal lines
         for i in range(1, BOARD_ROWS):
             pygame.draw.line(screen,
@@ -383,16 +386,16 @@ class Board:
                              LINE_COLOR
                              (i * SQUARE_SIZE, 0),
                              (SQUARE_SIZE * i, HEIGHT),
-                             LINE_WIDTH)
+                             LINE_WIDTH * 2)
         for i in range(1, BOARD_ROWS, 3):
             pygame.draw.line(screen,
                              LINE_COLOR
                              (i * SQUARE_SIZE, 0),
                              (SQUARE_SIZE * i, HEIGHT),
-                             LINE_WIDTH)
+                             LINE_WIDTH * 2)
         for i in range(BOARD_ROWS):
             for j in range(BOARD_COLS):
-                self.cells[i][j].draw(self.screen)
+                self.cells[i][j].draw()
         '''
         Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
         Draws every cell on this board.
@@ -449,7 +452,7 @@ class Board:
     def place_number(self, value):
         # I think this is completely wrong. I tried to go based off the video
 
-
+        num_font = pygame.font.Font(None, 10)
         # 3. text drawing: define the location
         num_one = num_font.render('2', 0, NUM_COLOR)
         num_two = num_font.render('3', 0, NUM_COLOR)

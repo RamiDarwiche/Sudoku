@@ -1,6 +1,6 @@
 import pygame, sys
 from constants import *
-
+from sudoku_generator import Board
 
 
 class Button():
@@ -31,6 +31,7 @@ class Button():
 
                 if self.text == "Easy":
                     screen.fill((0,0,0))
+                    #Board.draw()
                     #draw generated board, init with diff
                     self.difficulty = True #used for gui
 
