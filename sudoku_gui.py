@@ -52,7 +52,7 @@ class Button():
 
                 elif self.text == "Restart" and easy.difficulty == True:
                     #board.reset_to_original
-                    pass
+                    pygame.display.update()
 
                 elif self.text == "Exit" and easy.difficulty == True:
                     pygame.quit()
@@ -107,6 +107,18 @@ screen.blit(medium, mediumRect)
 screen.blit(hard, hardRect)
 '''
 
+def game_over_update(game_over):
+    if game_over == True:
+        screen.fill(mainImage)
+        end_text = "Game Won!"
+        exit = Button(425, 450, 150, 75, RED, "Exit", 470, 477)
+    else:
+        end_text = "Game Over :("
+        restart = Button(25, 450, 150, 75, RED, "Restart", 45, 477)
+
+    end_surf = font_3.render(end_text, 0, LINE_COLOR)
+    end_rect = end_surf.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))
+    screen.blit(end_surf, end_rect)
 
 
 while True:
@@ -115,6 +127,15 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = event.pos
+            row = y // SQUARE_SIZE
+            col = x // SQUARE_SIZE
+            if Board.check_board():
+                game_over = True
+            if game_over:
+                pygame.display.update()
+                pygame.time.delay(1000)
+                draw_game_over_screen(winner)
             #if click on a cell that is not randomly generated/deleted
                 #highlight it? it is suppose to be outlined red in the draw function in the class
                 #type in int in the box in a different font using sketch
@@ -126,7 +147,7 @@ while True:
                     #else:
                         #draw you lose
                 #update_board with inserted int
-                pass
+
 
     easy.clicking_button(event)
     medium.clicking_button(event)
@@ -137,8 +158,4 @@ while True:
         restart = Button(25,450,150,75,RED,"Restart",45,477)
         reset = Button(225,450,150,75,RED,"Reset",257,477)
         exit = Button(425,450,150,75,RED,"Exit",470,477)
-
-
-
-
-
+        pass
