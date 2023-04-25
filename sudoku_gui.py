@@ -127,15 +127,17 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            x, y = event.pos
-            row = y // SQUARE_SIZE
-            col = x // SQUARE_SIZE
-            if Board.check_board():
-                game_over = True
-            if game_over:
-                pygame.display.update()
-                pygame.time.delay(1000)
-                draw_game_over_screen(winner)
+            #x, y = event.pos
+            #row = y // SQUARE_SIZE
+            #col = x // SQUARE_SIZE
+            #game_over = False
+            #if Board.check_board():
+                #game_over = True
+            #if game_over:
+                #pygame.display.update()
+                #pygame.time.delay(1000)
+                #game_over_update(game_over)
+
             #if click on a cell that is not randomly generated/deleted
                 #highlight it? it is suppose to be outlined red in the draw function in the class
                 #type in int in the box in a different font using sketch
@@ -147,12 +149,18 @@ while True:
                     #else:
                         #draw you lose
                 #update_board with inserted int
+            pass
 
 
     easy.clicking_button(event)
     medium.clicking_button(event)
     hard.clicking_button(event)
     pygame.display.update()
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    screen.fill(BG_COLOR)  # sets the background color
+    board = Board(3, 3, WIDTH, HEIGHT, screen)
+    board.draw()
     if easy.difficulty == True or medium.difficulty == True or hard.difficulty == True:
         #make boxes better looking
         restart = Button(25,450,150,75,RED,"Restart",45,477)
