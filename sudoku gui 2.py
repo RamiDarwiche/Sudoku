@@ -103,38 +103,6 @@ def draw_game_over(screen):
     screen.blit(menu_surf, menu_rect)
 
 
-def during_game_buttons():
-    #make font
-    game_over_font = pygame.font.Font(None, 40)
-    #Restart button
-    restart_text = game_over_font.render("Restart", 0, (BLACK))
-    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20,
-                                   restart_text.get_size()[1] + 20))
-    restart_rect = restart_surf.get_rect(
-        center=(WIDTH // 2 - 200, HEIGHT // 2 + 350))
-    restart_surf.fill(LINE_COLOR)
-    restart_surf.blit(restart_text, (10, 10))
-    screen.blit(restart_surf, restart_rect)
-
-    #reset button
-    reset_text = game_over_font.render("Reset", 0, (BLACK))
-    reset_surf = pygame.Surface((reset_text.get_size()[0] + 20,
-                                   reset_text.get_size()[1] + 20))
-    reset_rect = reset_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 350))
-    reset_surf.fill(LINE_COLOR)
-    reset_surf.blit(reset_text, (10, 10))
-    screen.blit(reset_surf, reset_rect)
-
-    #exit button
-    exit_text = game_over_font.render("Exit", 0, (BLACK))
-    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20,
-                                   exit_text.get_size()[1] + 20))
-    exit_rect = exit_surf.get_rect(
-        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
-    exit_surf.fill(LINE_COLOR)
-    exit_surf.blit(exit_text, (10, 10))
-    screen.blit(exit_surf, exit_rect)
 
     #button funct
     """"
@@ -168,21 +136,72 @@ if __name__ == '__main__':
     screen.fill(WHITE)
     board = Board(WIDTH, HEIGHT, screen, difficulty)
     board.draw()
-    during_game_buttons()
+    game_over_font = pygame.font.Font(None, 40)
+    # Restart button
+    restart_text = game_over_font.render("Restart", 0, (BLACK))
+    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20,
+                                   restart_text.get_size()[1] + 20))
+    restart_rect = restart_surf.get_rect(
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 350))
+    restart_surf.fill(LINE_COLOR)
+    restart_surf.blit(restart_text, (10, 10))
+    screen.blit(restart_surf, restart_rect)
+
+    # reset button
+    reset_text = game_over_font.render("Reset", 0, (BLACK))
+    reset_surf = pygame.Surface((reset_text.get_size()[0] + 20,
+                                 reset_text.get_size()[1] + 20))
+    reset_rect = reset_surf.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 + 350))
+    reset_surf.fill(LINE_COLOR)
+    reset_surf.blit(reset_text, (10, 10))
+    screen.blit(reset_surf, reset_rect)
+
+    # exit button
+    exit_text = game_over_font.render("Exit", 0, (BLACK))
+    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20,
+                                exit_text.get_size()[1] + 20))
+    exit_rect = exit_surf.get_rect(
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
+    exit_surf.fill(LINE_COLOR)
+    exit_surf.blit(exit_text, (10, 10))
+    screen.blit(exit_surf, exit_rect)
     pygame.display.flip()
 
     num = -1
     while True:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
+
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 clicked_row = int(event.pos[1] / SQUARE_SIZE)
                 clicked_col = int(event.pos[0] / SQUARE_SIZE)
+                # Board.sketch()
                 print(clicked_row, clicked_col)
 
-                #coords is supposed to take x,y of pos and print the row and col that is selected
+            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+                if reset_rect.collidepoint(event.pos):
+                    pass
+                elif exit_rect.collidepoint(event.pos):
+                    pygame.quit()
+                    sys.exit()
+                elif restart_rect.collidepoint(event.pos):
+                    draw_game_easy(screen)
+                    screen.fill(WHITE)
+                    board = Board(WIDTH, HEIGHT, screen, difficulty)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
+
+
+
+
+                # coords is supposed to take x,y of pos and print the row and col that is selected
                 #you can use these print functions to test if it works
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
@@ -215,7 +234,7 @@ if __name__ == '__main__':
 
                 if event.type == pygame.K_RETURN and num > 9:
                     board.place_number(num)
-                    board.update_board
+
                     if board.is_full() == True:
                         if board.check_board() == True:
                             winner = 1
@@ -227,54 +246,10 @@ if __name__ == '__main__':
                     pygame.display.update()
                     pygame.time.delay(1000)
                     draw_game_over(screen)
-                    pass
+
             pygame.display.update()
 
             #asks for number to sktech
-        #     if event.type == pygame.K_1:
-        #         num = 1
-        #         board.sketch(num)
-        #     if event.type == pygame.K_2:
-        #         num = 2
-        #         board.sketch(num)
-        #     if event.type == pygame.K_3:
-        #         num = 3
-        #         board.sketch(num)
-        #     if event.type == pygame.K_4:
-        #         num = 4
-        #         board.sketch(num)
-        #     if event.type == pygame.K_5:
-        #         num = 5
-        #         board.sketch(num)
-        #     if event.type == pygame.K_6:
-        #         num = 6
-        #         board.sketch(num)
-        #     if event.type == pygame.K_7:
-        #         num = 7
-        #         board.sketch(num)
-        #     if event.type == pygame.K_8:
-        #         num = 8
-        #         board.sketch(num)
-        #     if event.type == pygame.K_9:
-        #         num = 9
-        #         board.sketch(num)
-        #
-        #     if event.type == pygame.K_RETURN and num > 9:
-        #         board.place_number(num)
-        #         board.update_board
-        #         if board.is_full() == True:
-        #             if board.check_board() == True:
-        #                 winner = 1
-        #                 game_over == True
-        #             else:
-        #                 winner = 0
-        #                 game_over == True
-        #     if game_over:
-        #         pygame.display.update()
-        #         pygame.time.delay(1000)
-        #         draw_game_over(screen)
-        #         pass
-        # pygame.display.update()
 
 
 """

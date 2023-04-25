@@ -280,7 +280,7 @@ class Cell:
         Otherwise, no value is displayed in the cell.
         The cell is outlined red if it is currently selected.
         '''
-        num_font = pygame.font.Font(None, 10)
+        num_font = pygame.font.Font(None, 25)
         chip_1_surf = num_font.render('1', 0, NUM_COLOR)  # sudoku 1-9
         # 3. text drawing: define the location
         chip_2_surf = num_font.render('2', 0, NUM_COLOR)
@@ -407,8 +407,10 @@ class Board:
         '''
 
     def select(self,row,col):
-        self.selected_row = row
-        self.selected_col = col
+        row = self.selected_row
+        col = self.selected_col
+        box_rect = (row, col, WIDTH // 9, HEIGHT // 9)
+        screen.blit(box_rect)
         '''
         Marks the cell at (row, col) in the board as the current selected cell.
         Once a cell has been selected, the user can edit its value or sketched value
