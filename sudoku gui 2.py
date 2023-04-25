@@ -11,13 +11,21 @@ def draw_game_easy(screen):
 
     #bg
     mainImage = pygame.image.load("sudokumenu.jpg")
+    mainImage = pygame.transform.scale(mainImage, (600,675))
     screen.blit(mainImage, (0, 0))
 
     #init and draw title
-    title_surface = easy_title_font.render("Sudoku", 0, LINE_COLOR)
+    title_surface = easy_title_font.render("Sudoku", 0, BLACK)
     title_rectangle = title_surface.get_rect(
         center = (WIDTH // 2, HEIGHT // 2 - 150))
     screen.blit(title_surface, title_rectangle)
+
+    #init and draw game mode
+    game_font = pygame.font.Font(None, 75)
+    game_mode = game_font.render("Select Game Mode:", 0, BLACK)
+    game_rectangle = game_mode.get_rect(
+        center=(WIDTH - 300, HEIGHT - 150))
+    screen.blit(game_mode, game_rectangle)
 
     #buttons
     #text first
@@ -41,11 +49,11 @@ def draw_game_easy(screen):
 
     #init button rect
     easy_rect = easy_surface.get_rect(
-        center = (WIDTH // 2-200, HEIGHT //2 + 150))
+        center = (WIDTH // 2-200, HEIGHT //2 + 250))
     medium_rect = medium_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 150))
+        center=(WIDTH // 2, HEIGHT // 2 + 250))
     hard_rect = hard_surface.get_rect(
-        center = (WIDTH // 2 + 200, HEIGHT // 2 +150))
+        center = (WIDTH // 2 + 200, HEIGHT // 2 +250))
 
     # Draw buttons
     screen.blit(easy_surface, easy_rect)
@@ -75,9 +83,9 @@ def draw_game_over(screen):
     game_over_font = pygame.font.Font(None, 40)
     screen.fill(pygame.image.load("sudokumenu.jpg"))
     if winner != 0:
-        text = 'You win!'
+        text = 'Game Won!'
     else:
-        text = "You lose T_T"
+        text = "Game Over :("
 
     #same logic as easy screen
     game_over_surf = game_over_font.render(text, 0, LINE_COLOR)
@@ -96,13 +104,32 @@ def draw_game_over(screen):
         center=(WIDTH // 2, HEIGHT // 2 + 150))
     screen.blit(menu_surf, menu_rect)
 
+def during_game_buttons():
+    game_over_font = pygame.font.Font(None, 40)
+    restart_surf = game_over_font.render(
+        'Restart', 0, LINE_COLOR)
+    restart_rect = restart_surf.get_rect(
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 350))
+    screen.blit(restart_surf, restart_rect)
+    # Added key to return to main menu
+    menu_surf = game_over_font.render(
+        'Exit', 0, LINE_COLOR)
+    menu_rect = menu_surf.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 + 350))
+    screen.blit(menu_surf, menu_rect)
+    reset_surf = game_over_font.render(
+        'Reset', 0, LINE_COLOR)
+    reset_rect = reset_surf.get_rect(
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
+    screen.blit(reset_surf, reset_rect)
+
 if __name__ == '__main__':
     game_over = False
     winner = False
     difficulty = 0
 
     pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    screen = pygame.display.set_mode((WIDTH, GAME_HEIGHT))
     pygame.display.set_caption("Sudoku")
 
     draw_game_easy(screen)  # Calls function to draw easy screen
@@ -113,6 +140,7 @@ if __name__ == '__main__':
     # middle_cell.draw(screen)
     board = Board(WIDTH, HEIGHT, screen, difficulty)
     board.draw()
+    during_game_buttons()
     pygame.display.flip()
 
     while True:

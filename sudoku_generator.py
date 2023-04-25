@@ -394,9 +394,10 @@ class Board:
                                 (j * SQUARE_SIZE, 0),
                                 (SQUARE_SIZE * j, HEIGHT),
                                 LINE_WIDTH * 2)
-        for i in range(0, BOARD_ROWS-1):
-            for j in range(0, BOARD_COLS-1):
+        for i in range(0, BOARD_ROWS-2):
+            for j in range(0, BOARD_COLS-2):
                 self.cells[i][j].draw()
+                #self.cells[BOARD_COLS].draw()
         '''
         Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
         Draws every cell on this board.
@@ -550,6 +551,6 @@ def generate_sudoku(size, removed):
 
 pygame.init()
 pygame.display.set_caption("Sudoku")
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, GAME_HEIGHT))
 mainImage = pygame.image.load("sudokumenu.jpg")
 screen.blit(mainImage, (0, 0))
