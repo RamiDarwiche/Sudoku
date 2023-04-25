@@ -116,6 +116,11 @@ if __name__ == '__main__':
     pygame.display.flip()
 
     while True:
+        #pygame.init()
+        #pygame.display.set_caption("Sudoku")
+        #screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        #mainImage = pygame.image.load("sudokumenu.jpg")
+        #screen.blit(mainImage, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

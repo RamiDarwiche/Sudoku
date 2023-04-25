@@ -452,6 +452,7 @@ class Board:
     def place_number(self, value):
         # I think this is completely wrong. I tried to go based off the video
 
+
         num_font = pygame.font.Font(None, 10)
         # 3. text drawing: define the location
         num_one = num_font.render('2', 0, NUM_COLOR)
@@ -468,47 +469,47 @@ class Board:
 
         for row in range(BOARD_ROWS):
             for col in range(BOARD_COLS):
-                if board[row][col] == '1':
+                if self.board[row][col] == '1':
                     location = num_one.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_one, location)
 
-                elif board[row][col] == '2':
+                elif self.board[row][col] == '2':
                     location = num_two.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_two, location)
 
-                elif board[row][col] == '3':
+                elif self.board[row][col] == '3':
                     location = num_three.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_three, location)
 
-                elif board[row][col] == '4':
+                elif self.board[row][col] == '4':
                     location = num_four.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_four, location)
 
-                elif board[row][col] == '5':
+                elif self.board[row][col] == '5':
                     location = num_five.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_five, location)
 
-                elif board[row][col] == '6':
+                elif self.board[row][col] == '6':
                     location = num_six.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_six, location)
 
-                elif board[row][col] == '7':
+                elif self.board[row][col] == '7':
                     location = num_seven.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_seven, location)
 
-                elif board[row][col] == '8':
+                elif self.board[row][col] == '8':
                     location = num_eight.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_eight, location)
 
-                elif board[row][col] == '9':
+                elif self.board[row][col] == '9':
                     location = num_nine.get_rect(
                         center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
                     self.screen.blit(num_nine, location)
