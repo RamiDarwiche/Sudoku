@@ -1,12 +1,12 @@
 import pygame, sys
 
-import sudoku_generator
+import sudoku_generator_whole
 from constants import *
-from sudoku_generator import Board
+from sudoku_generator_whole import Board
 
 def draw_game_easy(screen):
     #title font
-    easy_title_font = pygame.font.Font(None,100)
+    easy_title_font = pygame.font.Font(None, 80)
     button_font = pygame.font.Font(None, 70)
 
     #bg
@@ -15,7 +15,7 @@ def draw_game_easy(screen):
     screen.blit(mainImage, (0, 0))
 
     #init and draw title
-    title_surface = easy_title_font.render("Sudoku", 0, BLACK)
+    title_surface = easy_title_font.render("Welcome to Sudoku", 0, BLACK)
     title_rectangle = title_surface.get_rect(
         center = (WIDTH // 2, HEIGHT // 2 - 150))
     screen.blit(title_surface, title_rectangle)
@@ -106,24 +106,35 @@ def draw_game_over(screen):
 def during_game_buttons():
     #make font
     game_over_font = pygame.font.Font(None, 40)
-
-    #makes surface, then rectangle, then draws both
-    restart_surf = game_over_font.render(
-        'Restart', 0, LINE_COLOR)
+    #Restart button
+    restart_text = game_over_font.render("Restart", 0, (BLACK))
+    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20,
+                                   restart_text.get_size()[1] + 20))
     restart_rect = restart_surf.get_rect(
         center=(WIDTH // 2 - 200, HEIGHT // 2 + 350))
+    restart_surf.fill(LINE_COLOR)
+    restart_surf.blit(restart_text, (10, 10))
     screen.blit(restart_surf, restart_rect)
-    # Added key to return to main menu
-    exit_surf = game_over_font.render(
-        'Exit', 0, LINE_COLOR)
-    exit_rect = exit_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 350))
-    screen.blit(exit_surf, exit_rect)
-    reset_surf = game_over_font.render(
-        'Reset', 0, LINE_COLOR)
+
+    #reset button
+    reset_text = game_over_font.render("Reset", 0, (BLACK))
+    reset_surf = pygame.Surface((reset_text.get_size()[0] + 20,
+                                   reset_text.get_size()[1] + 20))
     reset_rect = reset_surf.get_rect(
-        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
+        center=(WIDTH // 2, HEIGHT // 2 + 350))
+    reset_surf.fill(LINE_COLOR)
+    reset_surf.blit(reset_text, (10, 10))
     screen.blit(reset_surf, reset_rect)
+
+    #exit button
+    exit_text = game_over_font.render("Exit", 0, (BLACK))
+    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20,
+                                   exit_text.get_size()[1] + 20))
+    exit_rect = exit_surf.get_rect(
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
+    exit_surf.fill(LINE_COLOR)
+    exit_surf.blit(exit_text, (10, 10))
+    screen.blit(exit_surf, exit_rect)
 
     #button funct
     """"
@@ -167,19 +178,15 @@ if __name__ == '__main__':
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
-                pos = pygame.mouse.get_pos()
-                coords = board.click(pos[0] / SQUARE_SIZE, pos[1] / SQUARE_SIZE)
-                cell_selected = board.select(coords[0], coords[1])
+                clicked_row = int(event.pos[1] / SQUARE_SIZE)
+                clicked_col = int(event.pos[0] / SQUARE_SIZE)
+                print(clicked_row, clicked_col)
 
                 #coords is supposed to take x,y of pos and print the row and col that is selected
                 #you can use these print functions to test if it works
-                print("Hello")
-                print(cell_selected)
-                print(coords)
-                print(pos)
-                print(pos[0])
-                print(pos[1] )
-
+            # if event.type == pygame.KEYDOWN:
+            #     if event.key == pygame.K_1:
+            #     pass
 
             #asks for number to sktech
             if event.type == pygame.K_1:
