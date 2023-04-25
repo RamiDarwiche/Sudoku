@@ -350,11 +350,17 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-        self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
-                      range(BOARD_ROWS)]
         self.board = self.initialize_board()
         self.selected_row = None
         self.selected_col = None
+        self.original_board = generate_sudoku(9, difficulty)
+        self.cells = [] # going to go through everything in original board, and 3change from integers to cell objects
+        row = []
+        for i in range(0,8):
+            for j in range(0,8)
+                row.append(Cell(self.original_board[i][j], i, j, screen))
+            self.cells.append(row)
+            row = []
 
 
     def initialize_board(self):
@@ -415,12 +421,6 @@ class Board:
             return row, col
         return None
 
-        # row, col = 0, 0
-        # if x >= 1 or x <= 9:
-        #     return row == x
-        # if y >= 1 or y <= 9:
-        #     return col == y
-        # return None
 
     def clear(self):
         pass
@@ -490,6 +490,7 @@ class Board:
 
 
 class Main:
+    # MUST MAKE DIFFICULTY A NUMBER (30 FOR EASY, 40 FOR MED, 50 FOR HARD)
     pass
 
 '''
