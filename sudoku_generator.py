@@ -353,8 +353,8 @@ class Board:
         self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
                       range(BOARD_ROWS)]
         self.board = self.initialize_board()
-        self.select_row = None
-        self.select_col = None
+        self.selected_row = None
+        self.selected_col = None
 
 
     def initialize_board(self):
@@ -397,13 +397,12 @@ class Board:
         '''
 
     def select(self,row,col):
-        self.select_row = row
-        self.select_col = col
+        self.selected_row = row
+        self.selected_col = col
         '''
         Marks the cell at (row, col) in the board as the current selected cell.
         Once a cell has been selected, the user can edit its value or sketched value
         '''
-
 
     def click(self, x, y):
         '''
