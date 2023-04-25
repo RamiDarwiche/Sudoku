@@ -483,7 +483,7 @@ class Board:
         for i in range(0, len(BOARD_ROWS-1)):   # may need more work
             for j in range(0, len(BOARD_COLS-1)):
                 if self.cells[i][j]:
-                    return i,j
+                    return i, j
 
 
     def check_board(self):
