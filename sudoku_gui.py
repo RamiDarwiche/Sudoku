@@ -1,6 +1,6 @@
 import pygame, sys
 from constants import *
-from sudoku_generator import Board
+from sudoku_generator_whole import Board
 
 
 class Button():
