@@ -292,48 +292,48 @@ class Cell:
         chip_8_surf = num_font.render('8', 0, NUM_COLOR)
         chip_9_surf = num_font.render('9', 0, NUM_COLOR)
 
-        if self.value == '1':
+        if self.value == 1:
             # draw 'x' or 'o' as text in the window/ board
             # 2. text drawing: define the text
             chip_1_rect = chip_1_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_1_surf, chip_1_rect)
-        elif self.value == '2':
+        elif self.value == 2:
             chip_2_rect = chip_2_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_2_surf, chip_2_rect)
-        elif self.value == '3':
+        elif self.value == 3:
             chip_3_rect = chip_3_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_3_surf, chip_3_rect)
-        elif self.value == '4':
+        elif self.value == 4:
             chip_4_rect = chip_4_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_4_surf, chip_4_rect)
-        elif self.value == '5':
+        elif self.value == 5:
             chip_5_rect = chip_5_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             screen.blit(chip_5_surf, chip_5_rect)
-        elif self.value == '6':
+        elif self.value == 6:
             chip_6_rect = chip_6_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_6_surf, chip_6_rect)
-        elif self.value == '7':
+        elif self.value == 7:
             chip_7_rect = chip_7_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_7_surf, chip_7_rect)
-        elif self.value == '8':
+        elif self.value == 8:
             chip_8_rect = chip_8_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
             screen.blit(chip_8_surf, chip_8_rect)
-        elif self.value == '9':
+        elif self.value == 9:
             chip_9_rect = chip_9_surf.get_rect(
                 center=(self.col * SQUARE_SIZE + SQUARE_SIZE // 2, self.row * SQUARE_SIZE + SQUARE_SIZE // 2))
             # 4. text drawing: blit
@@ -359,8 +359,8 @@ class Board:
         self.original_board = generate_sudoku(9, difficulty)
         self.cells = [] # going to go through everything in original board, and 3change from integers to cell objects
         row = []
-        for i in range(0,8):
-            for j in range(0,8):
+        for i in range(0,9):
+            for j in range(0,9):
                 row.append(Cell(self.original_board[i][j], i, j, screen))
             self.cells.append(row)
             row = []
@@ -397,8 +397,8 @@ class Board:
                                 (j * SQUARE_SIZE, 0),
                                 (SQUARE_SIZE * j, HEIGHT),
                                 LINE_WIDTH * 2)
-        for i in range(0, BOARD_ROWS-2):
-            for j in range(0, BOARD_COLS-2):
+        for i in range(0, BOARD_ROWS):
+            for j in range(0, BOARD_COLS):
                 self.cells[i][j].draw()
                 #self.cells[BOARD_COLS].draw()
         '''

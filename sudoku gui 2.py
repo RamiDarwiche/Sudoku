@@ -67,14 +67,11 @@ def draw_game_easy(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
                     #pick diff
-                    difficulty = 1
-                    return  # If the mouse is
+                    return 30 # If the mouse is
                 elif medium_rect.collidepoint(event.pos):
-                    difficulty =2
-                    return
+                    return 40
                 elif hard_rect.collidepoint(event.pos):
-                    difficulty = 3
-                    return
+                    return 50
 
         pygame.display.update()
 
@@ -117,38 +114,64 @@ def during_game_buttons():
     menu_rect = menu_surf.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 350))
     screen.blit(menu_surf, menu_rect)
-    reset_surf = game_over_font.render(
+    reset_surf = game_gitover_font.render(
         'Reset', 0, LINE_COLOR)
     reset_rect = reset_surf.get_rect(
         center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
     screen.blit(reset_surf, reset_rect)
 
 if __name__ == '__main__':
+    #starting variables
     game_over = False
     winner = False
-    difficulty = 0
 
+    #init screen
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, GAME_HEIGHT))
     pygame.display.set_caption("Sudoku")
 
-    draw_game_easy(screen)  # Calls function to draw easy screen
+    #display start until button is clicked
+    difficulty = draw_game_easy(screen)  # Calls function to draw easy screen
 
+    #
     screen.fill(WHITE)
-    # draw_lines()
-    # middle_cell = Cell('o', 1, 1, 200, 200)
-    # middle_cell.draw(screen)
     board = Board(WIDTH, HEIGHT, screen, difficulty)
     board.draw()
     during_game_buttons()
     pygame.display.flip()
 
+    num = -1
     while True:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+                coords = board.click(event.pos[0] / SQUARE_SIZE, event.pos[1] / SQUARE_SIZE)
+                cell_selected = board.select(coords[0], coords[1])
+
+            if event.type == pygame.K_1:
+                num = 1
+                board.sketch(num)
+
+
+                # num = event.type
+                # board.sketch(event.type)
+                # pass
+            # if event.type == pygame.K_RETURN
+                # board.place_number(event.type)
+                # board.update_board
+                # if is_full() == True:
+                # if check_board() == True:
+                    # winner = 1
+                    # game_over == True
+                # else:
+                    # winner = 0
+                    # game_over == True
+            # if game_over:
+                # pygame.display.update()
+                # pygame.time.delay(1000)
+                # draw_game_over(screen)
                 pass
 
 
