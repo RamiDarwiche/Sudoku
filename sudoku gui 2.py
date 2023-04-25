@@ -1,5 +1,4 @@
 import pygame, sys
-
 import sudoku_generator
 from constants import *
 from sudoku_generator import Board
@@ -70,7 +69,7 @@ def draw_game_easy(screen):
                     difficulty = 1
                     return  # If the mouse is
                 elif medium_rect.collidepoint(event.pos):
-                    difficulty =2
+                    difficulty = 2
                     return
                 elif hard_rect.collidepoint(event.pos):
                     difficulty = 3
@@ -150,6 +149,7 @@ if __name__ == '__main__':
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 pass
+
 
 
 """
