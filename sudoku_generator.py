@@ -59,7 +59,7 @@ class SudokuGenerator:
         for start in range(0, self.row_length, self.box_length):
             self.fill_box(start, start)
 
-    def fill_remaining(self, row, col):
+    def fill_remaining(self, row, col):  # given to students
         if col >= self.row_length and row < self.row_length - 1:
             row += 1
             col = 0
@@ -86,7 +86,7 @@ class SudokuGenerator:
                 self.board[row][col] = 0
         return False
 
-    def fill_values(self):
+    def fill_values(self):  # given to students
         self.fill_diagonal()
         self.fill_remaining(0, self.box_length)
 
@@ -138,7 +138,7 @@ class Cell:
         self.value = value
         self.row = row
         self.col = col
-        self.screen = scree
+        self.screen = screen
 
     def set_cell_value(self, value):
         # Setter for this cell’s value
@@ -317,8 +317,8 @@ class Board:
                     return i, j
 
     def check_board(self):
-        for i in range(0, 8):
-            for j in range(0, 8):
+        for i in range(0, 9):
+            for j in range(0, 9):
                 if not self.is_valid(i, j, self.cells[i][j].value):
                     return False
         return True
@@ -351,21 +351,20 @@ class Main:
     # MUST MAKE DIFFICULTY A NUMBER (30 FOR EASY, 40 FOR MED, 50 FOR HARD)
     pass
 
-# DO NOT CHANGE
-# Provided for students
-# Given a number of rows and number of cells to remove, this function:
-# 1. creates a SudokuGenerator
-# 2. fills its values and saves this as the solved state
-# 3. removes the appropriate number of cells
-# 4. returns the representative 2D Python Lists of the board and solution
-# Parameters:
-# size is the number of rows/columns of the board (9 for this project)
-# removed is the number of cells to clear (set to 0)
-# Return: list[list] (a 2D Python list to represent the board)
-
-
 '''
-def generate_sudoku(size, removed):
+DO NOT CHANGE
+Provided for students
+Given a number of rows and number of cells to remove, this function:
+1. creates a SudokuGenerator
+2. fills its values and saves this as the solved state
+3. removes the appropriate number of cells
+4. returns the representative 2D Python Lists of the board and solution
+Parameters:
+size is the number of rows/columns of the board (9 for this project)
+removed is the number of cells to clear (set to 0)
+Return: list[list] (a 2D Python list to represent the board)
+'''
+def generate_sudoku(size, removed): # given to students, don't change
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
     board = sudoku.get_board()
@@ -379,4 +378,3 @@ pygame.display.set_caption("Sudoku")
 screen = pygame.display.set_mode((WIDTH, GAME_HEIGHT))
 mainImage = pygame.image.load("sudokumenu.jpg")
 screen.blit(mainImage, (0, 0))
-'''
