@@ -424,7 +424,7 @@ class Board:
         # return None
 
     def clear(self):
-        if self.select_row is not None and self.select_col is not None:
+        pass
 
         '''
         Clears the value cell. Note that the user can only remove the cell values and sketched value that are
