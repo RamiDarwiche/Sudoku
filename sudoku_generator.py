@@ -1,5 +1,7 @@
-import math, random
-import pygame, sys
+import math
+import random
+import pygame
+import sys
 from constants import *
 
 
@@ -338,6 +340,7 @@ class Cell:
             screen.blit(chip_9_surf, chip_9_rect)
         else:
             print("None")
+
 
 class Board:
     def __init__(self, width, height, screen, difficulty):
