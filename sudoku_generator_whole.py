@@ -354,8 +354,8 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
         self.board = self.initialize_board()
-        self.selected_row = None
-        self.selected_col = None
+        self.selected_row = 0
+        self.selected_col = 0
         self.original_board = generate_sudoku(9, difficulty)
         self.cells = [] # going to go through everything in original board, and 3change from integers to cell objects
         row = []

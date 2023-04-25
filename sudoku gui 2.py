@@ -184,55 +184,97 @@ if __name__ == '__main__':
 
                 #coords is supposed to take x,y of pos and print the row and col that is selected
                 #you can use these print functions to test if it works
-            # if event.type == pygame.KEYDOWN:
-            #     if event.key == pygame.K_1:
-            #     pass
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    num = 1
+                    board.sketch(num)
+                if event.key == pygame.K_2:
+                    num = 2
+                    board.sketch(num)
+                if event.key == pygame.K_3:
+                    num = 3
+                    board.sketch(num)
+                if event.key == pygame.K_4:
+                    num = 4
+                    board.sketch(num)
+                if event.key == pygame.K_5:
+                    num = 5
+                    board.sketch(num)
+                if event.key == pygame.K_6:
+                    num = 6
+                    board.sketch(num)
+                if event.key == pygame.K_7:
+                    num = 7
+                    board.sketch(num)
+                if event.key == pygame.K_8:
+                    num = 8
+                    board.sketch(num)
+                if event.key == pygame.K_9:
+                    num = 9
+                    board.sketch(num)
+
+                if event.type == pygame.K_RETURN and num > 9:
+                    board.place_number(num)
+                    board.update_board
+                    if board.is_full() == True:
+                        if board.check_board() == True:
+                            winner = 1
+                            game_over == True
+                        else:
+                            winner = 0
+                            game_over == True
+                if game_over:
+                    pygame.display.update()
+                    pygame.time.delay(1000)
+                    draw_game_over(screen)
+                    pass
+            pygame.display.update()
 
             #asks for number to sktech
-            if event.type == pygame.K_1:
-                num = 1
-                board.sketch(num)
-            if event.type == pygame.K_2:
-                num = 2
-                board.sketch(num)
-            if event.type == pygame.K_3:
-                num = 3
-                board.sketch(num)
-            if event.type == pygame.K_4:
-                num = 4
-                board.sketch(num)
-            if event.type == pygame.K_5:
-                num = 5
-                board.sketch(num)
-            if event.type == pygame.K_6:
-                num = 6
-                board.sketch(num)
-            if event.type == pygame.K_7:
-                num = 7
-                board.sketch(num)
-            if event.type == pygame.K_8:
-                num = 8
-                board.sketch(num)
-            if event.type == pygame.K_9:
-                num = 9
-                board.sketch(num)
-
-            if event.type == pygame.K_RETURN and num > 9:
-                board.place_number(num)
-                board.update_board
-                if board.is_full() == True:
-                    if board.check_board() == True:
-                        winner = 1
-                        game_over == True
-                    else:
-                        winner = 0
-                        game_over == True
-            if game_over:
-                pygame.display.update()
-                pygame.time.delay(1000)
-                draw_game_over(screen)
-                pass
-        pygame.display.update()
+        #     if event.type == pygame.K_1:
+        #         num = 1
+        #         board.sketch(num)
+        #     if event.type == pygame.K_2:
+        #         num = 2
+        #         board.sketch(num)
+        #     if event.type == pygame.K_3:
+        #         num = 3
+        #         board.sketch(num)
+        #     if event.type == pygame.K_4:
+        #         num = 4
+        #         board.sketch(num)
+        #     if event.type == pygame.K_5:
+        #         num = 5
+        #         board.sketch(num)
+        #     if event.type == pygame.K_6:
+        #         num = 6
+        #         board.sketch(num)
+        #     if event.type == pygame.K_7:
+        #         num = 7
+        #         board.sketch(num)
+        #     if event.type == pygame.K_8:
+        #         num = 8
+        #         board.sketch(num)
+        #     if event.type == pygame.K_9:
+        #         num = 9
+        #         board.sketch(num)
+        #
+        #     if event.type == pygame.K_RETURN and num > 9:
+        #         board.place_number(num)
+        #         board.update_board
+        #         if board.is_full() == True:
+        #             if board.check_board() == True:
+        #                 winner = 1
+        #                 game_over == True
+        #             else:
+        #                 winner = 0
+        #                 game_over == True
+        #     if game_over:
+        #         pygame.display.update()
+        #         pygame.time.delay(1000)
+        #         draw_game_over(screen)
+        #         pass
+        # pygame.display.update()
 
 
 """
