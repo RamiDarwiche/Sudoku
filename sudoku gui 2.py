@@ -194,6 +194,7 @@ if __name__ == '__main__':
                     screen.blit(restart_surf, restart_rect)
                     screen.blit(reset_surf, reset_rect)
                     screen.blit(exit_surf, exit_rect)
+                    continue
 
 
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
