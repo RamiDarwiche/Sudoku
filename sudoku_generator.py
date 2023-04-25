@@ -2,11 +2,6 @@ import math, random
 import pygame, sys
 from constants import *
 
-"""
-This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
-https://www.geeksforgeeks.org/program-sudoku-generator/
-"""
-
 
 class SudokuGenerator:
     '''
@@ -276,7 +271,6 @@ class Cell:
         '''
 
 
-
     def draw(self):
         '''
         Draws this cell, along with the value inside it.
@@ -359,7 +353,8 @@ class Board:
         self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
                       range(BOARD_ROWS)]
         self.board = self.initialize_board()
-
+        self.select_row = None
+        self.select_col = None
 
 
     def initialize_board(self):
@@ -401,40 +396,36 @@ class Board:
         Draws every cell on this board.
         '''
 
-        # draw horizontal lines
-        for i in range(1, BOARD_ROWS):
-            pygame.draw.line(self.screen,
-                             LINE_COLOR,
-                             (0, i * SQUARE_SIZE),
-                             (WIDTH, i * SQUARE_SIZE), LINE_WIDTH)
-        #  draw vertical lines
-        for i in range(1, BOARD_COLS):
-            pygame.draw.line(self.screen,
-                             LINE_COLOR,
-                             (i * SQUARE_SIZE, 0),
-                             (SQUARE_SIZE * i, HEIGHT),
-                             LINE_WIDTH)
-
     def select(self,row,col):
+        self.select_row = row
+        self.select_col = col
         '''
         Marks the cell at (row, col) in the board as the current selected cell.
-        Once a cell has been selected, the user can edit its value or sketched value.
+        Once a cell has been selected, the user can edit its value or sketched value
         '''
-        pass
+
 
     def click(self, x, y):
         '''
         If a tuple of (x, y) coordinates is within the displayed board, this function returns a tuple of the (row, col)
         of the cell which was clicked. Otherwise, this function returns None
         '''
-        row, col = 0, 0
+        row = (y // SQUARE_SIZE) + 1
+        col = (x // SQUARE_SIZE) + 1
         if x >= 1 or x <= 9:
-            return row == x
-        if y >= 1 or y <= 9:
-            return col == y
+            return row, col
         return None
 
+        # row, col = 0, 0
+        # if x >= 1 or x <= 9:
+        #     return row == x
+        # if y >= 1 or y <= 9:
+        #     return col == y
+        # return None
+
     def clear(self):
+        if self.select_row is not None and self.select_col is not None:
+
         '''
         Clears the value cell. Note that the user can only remove the cell values and sketched value that are
         filled by themselves.
@@ -450,69 +441,6 @@ class Board:
         pass
 
     def place_number(self, value):
-        # I think this is completely wrong. I tried to go based off the video
-
-        num_font = pygame.font.Font(None, 10)
-        # 3. text drawing: define the location
-        num_one = num_font.render('2', 0, NUM_COLOR)
-        num_two = num_font.render('3', 0, NUM_COLOR)
-        num_three = num_font.render('4', 0, NUM_COLOR)
-        num_four = num_font.render('5', 0, NUM_COLOR)
-        num_five = num_font.render('6', 0, NUM_COLOR)
-        num_six = num_font.render('7', 0, NUM_COLOR)
-        num_seven = num_font.render('8', 0, NUM_COLOR)
-        num_eight = num_font.render('9', 0, NUM_COLOR)
-        num_nine = num_font.render('1', 0, NUM_COLOR)  # sudoku 1-9
-
-        # need to change cross_color to something else, don't know to what
-
-        for row in range(BOARD_ROWS):
-            for col in range(BOARD_COLS):
-                if board[row][col] == '1':
-                    location = num_one.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_one, location)
-
-                elif board[row][col] == '2':
-                    location = num_two.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_two, location)
-
-                elif board[row][col] == '3':
-                    location = num_three.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_three, location)
-
-                elif board[row][col] == '4':
-                    location = num_four.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_four, location)
-
-                elif board[row][col] == '5':
-                    location = num_five.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_five, location)
-
-                elif board[row][col] == '6':
-                    location = num_six.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_six, location)
-
-                elif board[row][col] == '7':
-                    location = num_seven.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_seven, location)
-
-                elif board[row][col] == '8':
-                    location = num_eight.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_eight, location)
-
-                elif board[row][col] == '9':
-                    location = num_nine.get_rect(
-                        center=(col * SQUARE_SIZE // 2, row * SQUARE_SIZE + SQUARE_SIZE // 2))
-                    self.screen.blit(num_nine, location)
-
         '''
         Sets the value of the current selected cell equal to user entered value.
         Called when the user presses the Enter key.
