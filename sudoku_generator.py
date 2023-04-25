@@ -423,7 +423,9 @@ class Board:
 
 
     def clear(self):
-        pass
+        if self.original_board[self.selected_row][self.selected_col] == 0:
+            self.cells[self.selected_row][self.selected_col].set_cell_value(0)
+            self.cells[self.selected_row][self.selected_col].set_sketched_value(0)
 
         '''
         Clears the value cell. Note that the user can only remove the cell values and sketched value that are
