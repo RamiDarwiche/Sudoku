@@ -422,6 +422,7 @@ class Board:
         '''
         pass
 
+
     def click(self, x, y):
         '''
         If a tuple of (x, y) coordinates is within the displayed board, this function returns a tuple of the (row, col)
@@ -429,10 +430,14 @@ class Board:
         '''
         row, col = 0, 0
         if x >= 1 or x <= 9:
-            return row == x
+            row = x
+        #else:
+            #return None
         if y >= 1 or y <= 9:
-            return col == y
-        return None
+            col = y
+        #else:
+            #return None
+        return row, col
 
     def clear(self):
         '''
@@ -447,7 +452,8 @@ class Board:
         Sets the sketched value of the current selected cell equal to user entered value.
         It will be displayed at the top left corner of the cell using the draw() function.
         '''
-        pass
+
+        self.board = Board.place_number(value)
 
     def place_number(self, value):
         # I think this is completely wrong. I tried to go based off the video
@@ -593,3 +599,4 @@ pygame.display.set_caption("Sudoku")
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 mainImage = pygame.image.load("sudokumenu.jpg")
 screen.blit(mainImage, (0, 0))
+#x = enumerate()
