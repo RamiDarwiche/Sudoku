@@ -357,7 +357,7 @@ class Board:
         self.cells = [] # going to go through everything in original board, and 3change from integers to cell objects
         row = []
         for i in range(0,8):
-            for j in range(0,8)
+            for j in range(0,8):
                 row.append(Cell(self.original_board[i][j], i, j, screen))
             self.cells.append(row)
             row = []
@@ -451,7 +451,7 @@ class Board:
         self.cells = []  # going to go through everything in original board, and 3change from integers to cell objects
         row = []
         for i in range(0, 8):
-            for j in range(0, 8)
+            for j in range(0, 8):
                 row.append(Cell(self.original_board[i][j], i, j, screen))
             self.cells.append(row)
             row = []
@@ -487,10 +487,39 @@ class Board:
 
 
     def check_board(self):
-        '''
-        Check whether the Sudoku board is solved correctly.
-        '''
-        pass
+        for i in range(0,8):
+            for j in range(0,8):
+                if not self.is_valid(i, j, self.cells[i][j].value):
+                    return False
+        return True
+
+
+    def valid_in_row(self, row, num):
+        for col in range(0, 8):
+            if self.cells[row][col].value == num:
+                return False
+        return True
+
+
+    def valid_in_col(self, col, num):
+        for row in range(0, 8):
+            if self.cells[row][col].value == num:
+                return False
+        return True
+
+
+    def valid_in_box(self, row_start, col_start, num):
+        for row in range(0, 2):
+            for col in range(0, 2):
+                if self.cells[row_start + row][col_start + col].value == num:
+                    return False
+        return True
+
+
+    def is_valid(self, row, col, num):
+        return (self.valid_in_row(row, num) and self.valid_in_col(col, num) and
+                self.valid_in_box(row - row % 3, col - col % 3, num))
+
 
 
 class Main:
