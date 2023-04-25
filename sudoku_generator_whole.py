@@ -469,9 +469,9 @@ class Board:
         '''
         Returns a Boolean value indicating whether the board is full or not.
         '''
-        for BOARD_ROWS in self.board:
+        for BOARD_ROWS in self.cells:
             for num in BOARD_ROWS:
-                if num == "0":
+                if num.value == 0:
                     return False
         return True
 
