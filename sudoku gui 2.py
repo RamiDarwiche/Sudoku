@@ -175,16 +175,14 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 sys.exit()
 
-
-            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
-                clicked_row = int(event.pos[1] / SQUARE_SIZE)
-                clicked_col = int(event.pos[0] / SQUARE_SIZE)
-                # Board.sketch()
-                print(clicked_row, clicked_col)
-
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 if reset_rect.collidepoint(event.pos):
-                    pass
+                    board.reset_to_original()
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+                    continue
                 elif exit_rect.collidepoint(event.pos):
                     pygame.quit()
                     sys.exit()
@@ -198,39 +196,105 @@ if __name__ == '__main__':
                     screen.blit(exit_surf, exit_rect)
 
 
+            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+                clicked_row = int(event.pos[1] / SQUARE_SIZE)
+                clicked_col = int(event.pos[0] / SQUARE_SIZE)
+                board.selected_row = clicked_row
+                board.selected_col = clicked_col
+                board.cells[clicked_row][clicked_col].row = clicked_row
+                board.cells[clicked_row][clicked_col].col = clicked_col
+
+                print(clicked_row, clicked_col)
+
+
+
 
 
 
                 # coords is supposed to take x,y of pos and print the row and col that is selected
                 #you can use these print functions to test if it works
             if event.type == pygame.KEYDOWN:
+
                 if event.key == pygame.K_1:
                     num = 1
-                    board.sketch(num)
+                    print("kdhb")
+                    print(board.cells[clicked_row][clicked_col].set_cell_value(num))
+
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_2:
                     num = 2
-                    board.sketch(num)
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_3:
                     num = 3
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_4:
                     num = 4
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_5:
                     num = 5
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_6:
                     num = 6
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_7:
                     num = 7
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_8:
                     num = 8
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
+
                 if event.key == pygame.K_9:
                     num = 9
-                    board.sketch(num)
+
+                    board.cells[clicked_row][clicked_col].set_cell_value(num)
+                    board.draw()
+                    screen.blit(restart_surf, restart_rect)
+                    screen.blit(reset_surf, reset_rect)
+                    screen.blit(exit_surf, exit_rect)
 
                 if event.type == pygame.K_RETURN and num > 9:
                     board.place_number(num)

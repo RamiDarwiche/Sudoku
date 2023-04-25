@@ -364,6 +364,7 @@ class Board:
                 row.append(Cell(self.original_board[i][j], i, j, screen))
             self.cells.append(row)
             row = []
+        self.original_cells = self.cells[:]
 
 
     def initialize_board(self):
@@ -439,9 +440,8 @@ class Board:
         '''
 
     def sketch(self, value):
-        if self.original_board[self.selected_row][self.selected_col] == 0:
-            self.cells[self.selected_row][self.selected_col].set_sketched_value(value)
-        '''
+        self.cells[self.selected_row][self.selected_col].draw()
+        '''draw(selected_row, )
         Sets the sketched value of the current selected cell equal to user entered value.
         It will be displayed at the top left corner of the cell using the draw() function.
         '''
@@ -455,10 +455,12 @@ class Board:
         '''
 
     def reset_to_original(self):
-        self.cells = []  # going to go through everything in original board, and 3change from integers to cell objects
+        self.board = self.original_board
+          # going to go through everything in original board, and 3change from integers to cell objects
         row = []
-        for i in range(0, 8):
-            for j in range(0, 8):
+        self.cells = []
+        for i in range(0, 9):
+            for j in range(0, 9):
                 row.append(Cell(self.original_board[i][j], i, j, screen))
             self.cells.append(row)
             row = []
