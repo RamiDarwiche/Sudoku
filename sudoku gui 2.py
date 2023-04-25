@@ -111,7 +111,7 @@ if __name__ == '__main__':
     # draw_lines()
     # middle_cell = Cell('o', 1, 1, 200, 200)
     # middle_cell.draw(screen)
-    board = Board(WIDTH, HEIGHT, screen,difficulty)
+    board = Board(WIDTH, HEIGHT, screen, difficulty)
     board.draw()
     pygame.display.flip()
 
