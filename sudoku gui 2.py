@@ -3,61 +3,62 @@ import sudoku_generator
 from constants import *
 from sudoku_generator import Board
 
+
 def draw_game_easy(screen):
-    #title font
-    easy_title_font = pygame.font.Font(None,100)
+    #  title font
+    easy_title_font = pygame.font.Font(None, 100)
     button_font = pygame.font.Font(None, 70)
 
-    #bg
+    #  bg
     mainImage = pygame.image.load("sudokumenu.jpg")
-    mainImage = pygame.transform.scale(mainImage, (600,675))
+    mainImage = pygame.transform.scale(mainImage, (600, 675))
     screen.blit(mainImage, (0, 0))
 
-    #init and draw title
+    #  init and draw title
     title_surface = easy_title_font.render("Sudoku", 0, BLACK)
     title_rectangle = title_surface.get_rect(
-        center = (WIDTH // 2, HEIGHT // 2 - 150))
+        center=(WIDTH // 2, HEIGHT // 2 - 150))
     screen.blit(title_surface, title_rectangle)
 
-    #init and draw game mode
+    #  init and draw game mode
     game_font = pygame.font.Font(None, 75)
     game_mode = game_font.render("Select Game Mode:", 0, BLACK)
     game_rectangle = game_mode.get_rect(
         center=(WIDTH - 300, HEIGHT - 150))
     screen.blit(game_mode, game_rectangle)
 
-    #buttons
-    #text first
-    easy_text = button_font.render("Easy", 0 ,(255,255,255))
-    medium_text = button_font.render("Medium", 0, (255,255,255))
-    hard_text = button_font.render("Hard", 0 , (255,255,255))
+    #  buttons
+    #  text first
+    easy_text = button_font.render("Easy", 0, (255, 255, 255))
+    medium_text = button_font.render("Medium", 0, (255, 255, 255))
+    hard_text = button_font.render("Hard", 0, (255, 255, 255))
 
-    #button bg color & text
+    #  button bg color & text
     easy_surface = pygame.Surface((easy_text.get_size()[0] + 20,
-                                    easy_text.get_size()[1] + 20))
+                                   easy_text.get_size()[1] + 20))
     easy_surface.fill(LINE_COLOR)
-    easy_surface.blit(easy_text,(10,10))
+    easy_surface.blit(easy_text, (10, 10))
     medium_surface = pygame.Surface((medium_text.get_size()[0] + 20,
-                                   medium_text.get_size()[1] + 20))
+                                     medium_text.get_size()[1] + 20))
     medium_surface.fill(LINE_COLOR)
-    medium_surface.blit(medium_text,(10,10))
+    medium_surface.blit(medium_text, (10, 10))
     hard_surface = pygame.Surface((hard_text.get_size()[0] + 20,
                                    hard_text.get_size()[1] + 20))
     hard_surface.fill(LINE_COLOR)
     hard_surface.blit(hard_text, (10, 10))
 
-    #init button rect
+    #  init button rect
     easy_rect = easy_surface.get_rect(
-        center = (WIDTH // 2-200, HEIGHT //2 + 250))
+        center=(WIDTH // 2-200, HEIGHT // 2 + 250))
     medium_rect = medium_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 250))
     hard_rect = hard_surface.get_rect(
-        center = (WIDTH // 2 + 200, HEIGHT // 2 +250))
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 250))
 
     # Draw buttons
     screen.blit(easy_surface, easy_rect)
     screen.blit(medium_surface, medium_rect)
-    screen.blit(hard_surface,hard_rect)
+    screen.blit(hard_surface, hard_rect)
 
     while True:
         for event in pygame.event.get():
@@ -65,7 +66,7 @@ def draw_game_easy(screen):
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
-                    #pick diff
+                    #  pick diff
                     difficulty = 1
                     return  # If the mouse is
                 elif medium_rect.collidepoint(event.pos):
@@ -77,7 +78,8 @@ def draw_game_easy(screen):
 
         pygame.display.update()
 
-    #game over screen
+
+#  game over screen
 def draw_game_over(screen):
     game_over_font = pygame.font.Font(None, 40)
     screen.fill(pygame.image.load("sudokumenu.jpg"))
@@ -86,7 +88,7 @@ def draw_game_over(screen):
     else:
         text = "Game Over :("
 
-    #same logic as easy screen
+    #  same logic as easy screen
     game_over_surf = game_over_font.render(text, 0, LINE_COLOR)
     game_over_rect = game_over_surf.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 100))
@@ -102,6 +104,7 @@ def draw_game_over(screen):
     menu_rect = menu_surf.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 150))
     screen.blit(menu_surf, menu_rect)
+
 
 def during_game_buttons():
     game_over_font = pygame.font.Font(None, 40)
@@ -121,6 +124,7 @@ def during_game_buttons():
     reset_rect = reset_surf.get_rect(
         center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
     screen.blit(reset_surf, reset_rect)
+
 
 if __name__ == '__main__':
     game_over = False
@@ -149,7 +153,6 @@ if __name__ == '__main__':
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
                 pass
-
 
 
 """
