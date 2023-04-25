@@ -381,13 +381,13 @@ class Board:
                              (i * SQUARE_SIZE, 0),
                              (SQUARE_SIZE * i, HEIGHT),
                              LINE_WIDTH)
-        for i in range(1, BOARD_COLS, 3):
+        for i in range(0, BOARD_COLS, 3):
             pygame.draw.line(screen,
                              LINE_COLOR
                              (i * SQUARE_SIZE, 0),
                              (SQUARE_SIZE * i, HEIGHT),
                              LINE_WIDTH * 2)
-        for i in range(1, BOARD_ROWS, 3):
+        for i in range(0, BOARD_ROWS, 3):
             pygame.draw.line(screen,
                              LINE_COLOR
                              (i * SQUARE_SIZE, 0),
