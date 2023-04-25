@@ -79,28 +79,40 @@ def draw_game_easy(screen):
     #game over screen
 def draw_game_over(screen):
     game_over_font = pygame.font.Font(None, 40)
-    screen.fill(pygame.image.load("sudokumenu.jpg"))
+    mainImage = pygame.image.load("sudokumenu.jpg")
+    mainImage = pygame.transform.scale(mainImage, (600, 675))
+    screen.blit(mainImage, (0, 0))
     if winner != 0:
         text = 'Game Won!'
     else:
         text = "Game Over :("
 
     #same logic as easy screen
-    game_over_surf = game_over_font.render(text, 0, LINE_COLOR)
+    game_over_surf = game_over_font.render(text, 0, BLACK)
     game_over_rect = game_over_surf.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 100))
     screen.blit(game_over_surf, game_over_rect)
-    restart_surf = game_over_font.render(
-        'Restart', 0, LINE_COLOR)
+    # Restart button
+    restart_text = game_over_font.render("Restart", 0, (BLACK))
+    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20,
+                                   restart_text.get_size()[1] + 20))
     restart_rect = restart_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 100))
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 350))
+    restart_surf.fill(LINE_COLOR)
+    restart_surf.blit(restart_text, (10, 10))
     screen.blit(restart_surf, restart_rect)
+
+
     # Added key to return to main menu
-    menu_surf = game_over_font.render(
-        'Exit', 0, LINE_COLOR)
-    menu_rect = menu_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 150))
-    screen.blit(menu_surf, menu_rect)
+    # Exit button
+    exit_text = game_over_font.render("Exit", 0, (BLACK))
+    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20,
+                                exit_text.get_size()[1] + 20))
+    exit_rect = exit_surf.get_rect(
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 350))
+    exit_surf.fill(LINE_COLOR)
+    exit_surf.blit(exit_text, (10, 10))
+    screen.blit(exit_surf, exit_rect)
 
 
 
@@ -315,6 +327,7 @@ if __name__ == '__main__':
                         pygame.display.update()
                         pygame.time.delay(1000)
                         draw_game_over(screen)
+                        continue
 
             pygame.display.update()
 
