@@ -356,7 +356,7 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-        self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
+        self.cells = [[Cell("0", BOARD_ROWS, BOARD_COLS, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for BOARD_ROWS in
                       range(BOARD_ROWS)]
         self.board = self.initialize_board()
 
@@ -368,7 +368,7 @@ class Board:
 
 
     def draw(self):
-        self.screen.fill(255, 255, 255)
+        self.screen.fill(BG_COLOR)
         # draw horizontal lines
         for i in range(1, BOARD_ROWS):
             pygame.draw.line(screen,

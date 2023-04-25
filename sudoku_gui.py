@@ -159,7 +159,7 @@ while True:
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     screen.fill(BG_COLOR)  # sets the background color
-    board = Board(3, 3, WIDTH, HEIGHT, screen)
+    board = Board(3, 3, WIDTH, HEIGHT)
     board.draw()
     if easy.difficulty == True or medium.difficulty == True or hard.difficulty == True:
         #make boxes better looking
