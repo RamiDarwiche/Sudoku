@@ -126,20 +126,20 @@ def during_game_buttons():
     screen.blit(reset_surf, reset_rect)
 
     #button funct
+    """"
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if restart_rect.collidepoint(event.pos):
-                    draw_game_easy(screen)
-                    return# If the mouse is
+                    pass # If the mouse is
                 elif exit_rect.collidepoint(event.pos):
                     sys.exit()
                 elif reset_rect.collidepoint(event.pos):
                     board.reset_to_original()
                     return
-
+"""
 if __name__ == '__main__':
     #starting variables
     game_over = False
