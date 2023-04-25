@@ -426,33 +426,35 @@ class Board:
         if self.original_board[self.selected_row][self.selected_col] == 0:
             self.cells[self.selected_row][self.selected_col].set_cell_value(0)
             self.cells[self.selected_row][self.selected_col].set_sketched_value(0)
-
         '''
         Clears the value cell. Note that the user can only remove the cell values and sketched value that are
         filled by themselves.
         '''
 
-        pass
-
     def sketch(self, value):
+        if self.original_board[self.selected_row][self.selected_col] == 0:
+            self.cells[self.selected_row][self.selected_col].set_sketched_value(value)
         '''
         Sets the sketched value of the current selected cell equal to user entered value.
         It will be displayed at the top left corner of the cell using the draw() function.
         '''
-        pass
 
     def place_number(self, value):
+        if self.original_board[self.selected_row][self.selected_col] == 0:
+            self.cells[self.selected_row][self.selected_col].set_cell_value(value)
         '''
         Sets the value of the current selected cell equal to user entered value.
         Called when the user presses the Enter key.
         '''
-        pass
 
     def reset_to_original(self):
-        '''
-        Reset all cells in the board to their original values (0 if cleared, otherwise the corresponding digit)
-        '''
-        pass
+        self.cells = []  # going to go through everything in original board, and 3change from integers to cell objects
+        row = []
+        for i in range(0, 8):
+            for j in range(0, 8)
+                row.append(Cell(self.original_board[i][j], i, j, screen))
+            self.cells.append(row)
+            row = []
 
     def is_full(self):
         '''
@@ -466,11 +468,12 @@ class Board:
 
 
     def update_board(self):
+        #WHAT IS THE PURPOSE OF THIS FUNCTION
+        pass
         '''
         Updates the underlying 2D board with the values in all cells.
         '''
-        self.cells = [[Cell(self.board[BOARD_ROWS][BOARD_COLS], BOARD_ROWS, BOARD_COLS, SQUARE_SIZE, SQUARE_SIZE) for BOARD_COLS in range(BOARD_COLS)] for
-                      BOARD_COLS in range(BOARD_ROWS)]
+
 
 
     def find_empty(self):
@@ -479,9 +482,8 @@ class Board:
         '''
         for i in range(0, len(BOARD_ROWS-1)):   # may need more work
             for j in range(0, len(BOARD_COLS-1)):
-                if i == '0':
-                    if j == '0':
-                        return (i,j)
+                if self.cells[i][j]:
+                    return i,j
 
 
     def check_board(self):
