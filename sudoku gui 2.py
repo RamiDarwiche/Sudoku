@@ -105,7 +105,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku")
 
-    #draw_game_easy(screen)  # Calls function to draw easy screen
+    draw_game_easy(screen)  # Calls function to draw easy screen
 
     screen.fill(WHITE)
     # draw_lines()
@@ -116,11 +116,7 @@ if __name__ == '__main__':
     pygame.display.flip()
 
     while True:
-        #pygame.init()
-        #pygame.display.set_caption("Sudoku")
-        #screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        #mainImage = pygame.image.load("sudokumenu.jpg")
-        #screen.blit(mainImage, (0, 0))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -222,7 +218,7 @@ while True:
     hard.clicking_button(event)
     pygame.display.update()
     if easy.difficulty == True:
-        reeasy = Button(25, 450, 150, 75, RED, "Reeasy", 45, 477)
+        restart = Button(25, 450, 150, 75, RED, "Restart", 45, 477)
         reset = Button(225, 450, 150, 75, RED, "Reset", 257, 477)
         exit = Button(425, 450, 150, 75, RED, "Exit", 470, 477)
         gen = 0
@@ -234,7 +230,7 @@ while True:
             board.draw()
 
     elif medium.difficulty == True:
-        reeasy = Button(25, 450, 150, 75, RED, "Reeasy", 45, 477)
+        restart = Button(25, 450, 150, 75, RED, "Restart", 45, 477)
         reset = Button(225, 450, 150, 75, RED, "Reset", 257, 477)
         exit = Button(425, 450, 150, 75, RED, "Exit", 470, 477)
         gen = 0
@@ -246,7 +242,7 @@ while True:
             board.draw()
 
     elif hard.difficulty == True:
-        reeasy = Button(25,450,150,75,RED,"Reeasy",45,477)
+        restart = Button(25,450,150,75,RED,"Restart",45,477)
         reset = Button(225,450,150,75,RED,"Reset",257,477)
         exit = Button(425,450,150,75,RED,"Exit",470,477)
         gen = 0

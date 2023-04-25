@@ -108,6 +108,7 @@ screen.blit(hard, hardRect)
 '''
 
 def game_over_update(game_over):
+    mainImage = pygame.image.load("sudokumenu.jpg")
     if game_over == True:
         screen.fill(mainImage)
         end_text = "Game Won!"

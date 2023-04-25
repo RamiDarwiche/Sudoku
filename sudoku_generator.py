@@ -385,17 +385,17 @@ class Board:
         for i in range(0, BOARD_COLS, 3):
             pygame.draw.line(screen,
                              LINE_COLOR,
-                             (i * SQUARE_SIZE, 0),
-                             (SQUARE_SIZE * i, HEIGHT),
+                             (0, i * SQUARE_SIZE),
+                             (WIDTH, i * SQUARE_SIZE),
                              LINE_WIDTH * 2)
-        for i in range(0, BOARD_ROWS, 3):
-            pygame.draw.line(screen,
-                             LINE_COLOR,
-                             (i * SQUARE_SIZE, 0),
-                             (SQUARE_SIZE * i, HEIGHT),
-                             LINE_WIDTH * 2)
-        for i in range(BOARD_ROWS):
-            for j in range(BOARD_COLS):
+            for j in range(0, BOARD_ROWS, 3):
+                pygame.draw.line(screen,
+                                LINE_COLOR,
+                                (j * SQUARE_SIZE, 0),
+                                (SQUARE_SIZE * j, HEIGHT),
+                                LINE_WIDTH * 2)
+        for i in range(0, BOARD_ROWS-1):
+            for j in range(0, BOARD_COLS-1):
                 self.cells[i][j].draw()
         '''
         Draws an outline of the Sudoku grid, with bold lines to delineate the 3x3 boxes.
