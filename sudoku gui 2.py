@@ -68,7 +68,7 @@ def draw_game_easy(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
                     #pick diff
-                    return 30 # If the mouse is
+                    return 1 # If the mouse is
                 elif medium_rect.collidepoint(event.pos):
                     return 40
                 elif hard_rect.collidepoint(event.pos):
@@ -78,7 +78,7 @@ def draw_game_easy(screen):
 
     #game over screen
 def draw_game_over(screen):
-    game_over_font = pygame.font.Font(None, 40)
+    game_over_font = pygame.font.Font(None, 80)
     mainImage = pygame.image.load("sudokumenu.jpg")
     mainImage = pygame.transform.scale(mainImage, (600, 675))
     screen.blit(mainImage, (0, 0))
@@ -93,6 +93,7 @@ def draw_game_over(screen):
         center=(WIDTH // 2, HEIGHT // 2 - 100))
     screen.blit(game_over_surf, game_over_rect)
     # Restart button
+    game_over_font = pygame.font.Font(None, 40)
     restart_text = game_over_font.render("Restart", 0, (BLACK))
     restart_surf = pygame.Surface((restart_text.get_size()[0] + 20,
                                    restart_text.get_size()[1] + 20))
@@ -113,6 +114,20 @@ def draw_game_over(screen):
     exit_surf.fill(LINE_COLOR)
     exit_surf.blit(exit_text, (10, 10))
     screen.blit(exit_surf, exit_rect)
+    if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+        if exit_rect.collidepoint(event.pos):
+            pygame.quit()
+            sys.exit()
+        elif restart_rect.collidepoint(event.pos):
+            draw_game_easy(screen)
+            screen.fill(WHITE)
+            board = Board(WIDTH, HEIGHT, screen, difficulty)
+            board.draw()
+            screen.blit(restart_surf, restart_rect)
+            screen.blit(reset_surf, reset_rect)
+            screen.blit(exit_surf, exit_rect)
+    pygame.display.update()
+
 
 
 
@@ -316,16 +331,15 @@ if __name__ == '__main__':
                     if board.is_full() == True:
 
                         if board.check_board() == True:
-
                             winner = 1
                             game_over = True
                         else:
-
                             winner = 0
                             game_over = True
                     if game_over == True:
                         pygame.display.update()
                         pygame.time.delay(1000)
+                        print(winner)
                         draw_game_over(screen)
                         continue
 
