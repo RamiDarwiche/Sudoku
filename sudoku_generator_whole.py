@@ -473,6 +473,7 @@ class Board:
             for num in BOARD_ROWS:
                 if num.value == 0:
                     return False
+
         return True
 
 
@@ -504,14 +505,14 @@ class Board:
 
 
     def valid_in_row(self, row, num):
-        for col in range(0, 8):
+        for col in range(0, 9):
             if self.cells[row][col].value == num:
                 return False
         return True
 
 
     def valid_in_col(self, col, num):
-        for row in range(0, 8):
+        for row in range(0, 9):
             if self.cells[row][col].value == num:
                 return False
         return True

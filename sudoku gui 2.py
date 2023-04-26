@@ -68,7 +68,7 @@ def draw_game_easy(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
                     #pick diff
-                    return 1 # If the mouse is
+                    return 30 # If the mouse is
                 elif medium_rect.collidepoint(event.pos):
                     return 40
                 elif hard_rect.collidepoint(event.pos):
@@ -329,14 +329,7 @@ if __name__ == '__main__':
 
 
                     if board.is_full() == True:
-
-                        if board.check_board() == True:
-                            winner = 1
-                            game_over = True
-                        else:
-                            winner = 0
-                            game_over = True
-                    if game_over == True:
+                        winner = 1
                         pygame.display.update()
                         pygame.time.delay(1000)
                         print(winner)
